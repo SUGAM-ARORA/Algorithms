@@ -1,0 +1,21 @@
+This C program takes an integer input n and prints either "Motu" or "Patlu" based on certain conditions. Here is the pseudo code for the given code:
+
+Declare integers n, p, m, and i
+Read an integer n from user
+Initialize i = 1
+While i is less than or equal to n:
+    if n is greater than or equal to i:
+        p = i
+        n = n - p
+    else:
+        p = n
+    if n is greater than or equal to 2 * i:
+        m = i * 2
+        n = n - m
+    else:
+        m = n
+    Increment i
+If p is greater than m:
+    Print "Motu"
+Else:
+    Print "Patlu"
