@@ -1,0 +1,19 @@
+The given C code takes an integer input n and performs certain calculations to determine whether to print "Motu" or "Patlu". Here is an explanation of how the program works:
+
+Declare integer variables n, p, m, and i and set i to 1.
+
+Read an integer input n from the user.
+
+Enter into a loop that runs n number of times.
+
+Check whether n is greater than or equal to i. If it is, set p equal to i and subtract p from n. If n is less than i, set p equal to n.
+
+Check whether n is greater than or equal to 2 * i. If it is, set m equal to i multiplied by 2 and subtract m from n. If n is less than 2 * i, set m equal to n.
+
+Increment i by 1.
+
+Compare p and m and print "Motu" if p is greater than m, or print "Patlu" if m is greater than p.
+
+End the program by returning 0.
+
+In summary, the program performs some calculations based on the input n and prints either "Motu" or "Patlu" based on the output of those calculations.
