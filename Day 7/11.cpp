@@ -1,55 +1,48 @@
-#include <algorithm>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <unordered_map>
 using namespace std;
 
-struct Job {
-
-	char id; 
-	int dead; 
-	int profit; 
+class Job
+{
+    public :
+    int startTime;
+    int endTime;
 };
 
-bool comparison(Job a, Job b)
+//custom comparator
+bool cmp(Job j1,Job j2)
 {
-	return (a.profit > b.profit);
-}
-void printJobScheduling(Job arr[], int n)
-{
-	sort(arr, arr + n, comparison);
-	int result[n]; 
-	bool slot[n]; 
-	for (int i = 0; i < n; i++)
-		slot[i] = false;
-	for (int i = 0; i < n; i++) {
-		for (int j = min(n, arr[i].dead) - 1; j >= 0; j--) {
-			if (slot[j] == false) {
-				result[j] = i; 
-				slot[j] = true; 
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < n; i++)
-		if (slot[i])
-			cout << arr[result[i]].id << " ";
+    return j1.endTime < j2.endTime;
 }
 
-// Driver's code
+int JobsDone(vector<Job> &Jobs)
+{
+    sort(Jobs.begin(),Jobs.end(),cmp);
+    int count = 1;
+    Job temp = Jobs[0];
+    for(int i=1;i<Jobs.size();i++)
+    {
+        if(temp.endTime< Jobs[i].startTime)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+ 
 int main()
 {
-	Job arr[] = { { 'a', 2, 100 },
-				{ 'b', 1, 19 },
-				{ 'c', 2, 27 },
-				{ 'd', 1, 25 },
-				{ 'e', 3, 15 } };
+    int n;
+    cin >> n;
 
-	int n = sizeof(arr) / sizeof(arr[0]);
-	cout << "Following is maximum profit sequence of jobs "
-			"\n";
+    vector<Job> Jobs(n);
+    for(int i=0;i<n;i++)
+    {
+        cin >> Jobs[i].startTime >> Jobs[i].endTime;
+    }
 
-	printJobScheduling(arr, n);
-	return 0;
+    cout << JobsDone(Jobs);
 }
-
-
-
