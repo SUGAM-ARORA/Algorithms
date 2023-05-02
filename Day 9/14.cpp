@@ -1,5 +1,6 @@
-public class Solution {
-    public int[] solve(int A, int[] B) {
+ class Solution {
+    public :
+     int[] solve(int A, int[] B) {
       int min=Integer.MAX_VALUE;
       int t=0;
       for(int i=0; i<B.length;i++){
