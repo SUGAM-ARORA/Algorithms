@@ -1,28 +1,35 @@
-class Solution {
-public:
-    int minDistance(string word1, string word2) {
-        int m = word1.length();
-        int n = word2.length();
-        vector<vector<int>> dp(m+1, vector<int>(n+1));
+#include<bits/stdc++.h>
+using namespace std;
+
+int operation(string &a, string &b, int i, int j){
+    if(j==0){
+       return i;
         
-        for (int i = 0; i <= m; i++) {
-            dp[i][0] = i;
-        }
-        
-        for (int j = 0; j <= n; j++) {
-            dp[0][j] = j;
-        }
-        
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (word1[i-1] == word2[j-1]) {
-                    dp[i][j] = dp[i-1][j-1];
-                } else {
-                    dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
-                }
-            }
-        }
-        
-        return dp[m][n];
     }
-};
+    if(i==0){
+       return j;
+    }
+    int cnt=0;
+    if(a[i-1]==b[j-1]){
+        cnt+=operation(a, b, i-1,j-1);
+    }
+    else{
+        cnt=1+ min(operation(a, b, i-1, j-1), min(operation(a, b, i, j-1), operation(a, b, i-1, j)));
+    }
+    
+
+    return cnt;
+
+
+}
+
+int main()
+{
+    vector<string> a = {"abcd", "geeksforgeeks", "heap", "abcd", "cue", "edl"};
+    vector<string> b = {"abc", "geeks", "pea", "anc", "dgo", "xcqja"};
+    for(int i=0; i<6; i++){
+        cout<<operation(a[i], b[i], a[i].size(), b[i].size())<<" ";
+    }
+
+ return 0;
+}
